@@ -1,0 +1,103 @@
+.rebond{
+    width: 250px;
+    height: 250px;
+    background-color: bisque;
+    position: relative;
+}
+
+.balle{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: black;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    /* animation: rebond 2s alternate infinite cubic-bezier(.7,.01,.79,.53); */
+    animation-name: rebond;
+    animation-duration: 4s;
+    animation-direction: alternate;
+    animation-iteration-count: infinite;
+    animation-timing-function: cubic-bezier(.7,.01,.79,.53);
+}
+
+.sol{
+    background-color: green;
+    height: 5px;
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+}
+
+@keyframes rebond {
+    from{
+        bottom: 80%;
+    }
+    90%{
+        transform: translateX(-50%) rotateX(0);
+    }
+    to{
+        bottom: -3px;
+        transform: translateX(-50%) rotateX(60deg);
+    }
+}
+
+.battement{
+    margin: 50px;
+}
+
+.bouton{
+    background-color: lightcoral;
+    text-align: center;
+    padding: 1rem 2rem;
+    border-radius: 5px;
+    animation: battement 1s infinite cubic-bezier(.66, 0, 0, 1);
+}
+
+@keyframes battement {
+    from{
+        box-shadow: 0 0 5px -15px rgba(255, 0, 0, .7), 0 0 5px -5px rgba(255, 0, 0, .7);
+    }
+    to{
+        box-shadow: 0 0 5px 10px rgba(255, 0, 0, 0), 0 0 5px 13px rgba(255, 0, 0, 0);
+    }
+}
+
+.ombre{
+    border: 1px solid lightgrey;
+    margin: 0 0 0 .5rem;
+    min-height: 200px;
+    padding: .5rem;
+    background-color: white;
+    position: relative;
+}
+
+.ombre::before, .ombre::after{
+    content: "";
+    width: 50%;
+    background-color: rgba(0, 0, 0, .7);
+    position: absolute;
+    bottom: 15px;
+    top: 80%;
+    max-width: 300px;
+    left: 10px;
+    box-shadow: 0 15px 10px rgba(0, 0, 0, .7);
+    transform: rotate(-3deg);
+    z-index: -1;
+}
+
+.ombre::after{
+    left: unset;
+    right: 10px;
+    transform: rotate(3deg);
+    animation: vent 0.5s linear infinite alternate;
+}
+
+@keyframes vent {
+    from{
+        transform: rotate(0deg) translateY(-5px);
+    }
+    to{
+        transform: rotate(3deg);
+    }
+}
